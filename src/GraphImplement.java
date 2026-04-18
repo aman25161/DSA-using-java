@@ -12,6 +12,7 @@ public class GraphImplement {
         adjacency[d].add(s);
     }
     public void bfs(int source){
+        System.out.print("BFS is : ");
         boolean visited[]=new boolean[adjacency.length];
         int parent[]=new int[adjacency.length];
         Queue<Integer> q=new LinkedList<>();
@@ -26,6 +27,27 @@ public class GraphImplement {
                     visited[i]=true;
                     q.add(i);
                     parent[i]=p;
+                }
+            }
+        }
+    }
+    public void dfs(int source){
+        System.out.println();
+        System.out.print("DFS is : ");
+        boolean visited[]=new boolean[adjacency.length];
+        int parent[]=new int[adjacency.length];
+        Stack<Integer> st = new Stack<>();
+        st.push(source);
+        parent[source]=-1;
+        visited[source]=true;
+        while(!st.isEmpty()){
+            int p= st.pop();
+            System.out.print(p+" ");
+            for(int i : adjacency[p]){
+                if(visited[i]!=true){
+                    visited[i]=true;
+                    parent[i]=p;
+                    st.push(i);
                 }
             }
         }
@@ -46,5 +68,6 @@ public class GraphImplement {
         System.out.println("Enter source from which traversal starts : ");
         int source=sc.nextInt();
         g.bfs(source);
+        g.dfs(source);
     }
 }
